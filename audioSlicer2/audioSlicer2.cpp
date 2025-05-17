@@ -362,7 +362,7 @@ void process_file(const fs::path& original_path) {
 
         // 恢复原始文件名
         fs::rename(temp_path, original_path);
-        std::cout << std::format("[CLEAN ] 清理临时文件: {}\n",
+        std::cout << std::format("[CLEAN] 清理临时文件: {}\n",
             temp_path.filename().string());
 
         // 移动输出目录到原始位置
@@ -377,7 +377,7 @@ void process_file(const fs::path& original_path) {
             for (const auto& entry : fs::directory_iterator(original_output_dir)) {
                 fs::path old_path = entry.path();
                 std::string filename = old_path.filename().string();
-                size_t pos = filename.find('_');
+                size_t pos = filename.rfind('_');
                 if (pos != std::string::npos) {
                     std::string new_filename = std::format("{}{}",
                         original_path.stem().string(),
